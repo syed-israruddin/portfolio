@@ -95,10 +95,11 @@ a { color: inherit; text-decoration: none; }
 .project-card::after { content: ""; position: absolute; inset: 0; z-index: 2; border: 1px solid var(--ink); border-radius: inherit; pointer-events: none; }
 .project-card__grainient { position: absolute; inset: 0; z-index: 0; overflow: hidden; border-radius: inherit; opacity: 0; pointer-events: none; transition: opacity 400ms ease; }
 .project-card__mockup { position: relative; z-index: 1; width: 302px; height: 349px; flex: 0 0 302px; overflow: hidden; }
-.project-card__mockup img { display: block; width: 100%; height: auto; transform: translateY(var(--mockup-offset-y)) scale(1); transform-origin: center center; filter: grayscale(1); transition: filter 400ms ease, transform 400ms ease; }
-.project-card:hover .project-card__mockup img { transform: translateY(var(--mockup-offset-y)) scale(1.03); filter: grayscale(0); }
+.project-card__mockup img { display: block; width: var(--mockup-render-width); max-width: none; height: auto; transform: translate(var(--mockup-offset-x), var(--mockup-offset-y)) scale(1); transform-origin: center center; filter: grayscale(1); transition: filter 400ms ease, transform 400ms ease; }
+.project-card:hover .project-card__mockup img { transform: translate(var(--mockup-offset-x), var(--mockup-offset-y)) scale(1.03); filter: grayscale(0); }
 .project-card--reversed { flex-direction: row-reverse; }
-.project-card--betterboxd { padding-left: 30px; }
+.project-card--betterboxd,
+.project-card--pastcast { padding-left: 30px; }
 .project-card:hover .project-card__grainient { opacity: 1; }
 .project-card__content { position: relative; z-index: 1; display: flex; flex: 1; flex-direction: column; align-items: flex-start; transition: color 400ms ease; }
 .project-card__content h3,
@@ -107,7 +108,7 @@ a { color: inherit; text-decoration: none; }
 .project-card__content p { max-width: 350px; margin-top: 10px; font-family: var(--font-dm-sans), Arial, sans-serif; font-size: 16px; font-weight: 300; line-height: 1.1; }
 .project-card__content em { font-family: var(--font-dm-sans), Arial, sans-serif; font-weight: 300; font-style: italic; }
 .project-card__app-store-badge { width: 120px; height: 40px; margin-top: 15px; }
-.project-card--betterboxd:hover .project-card__content { color: #ffffff; }
+.project-card:hover .project-card__content { color: var(--hover-text-color); }
 
 @media (max-width: 700px) {
   .page-shell { width: min(100% - 48px, 400px); padding: 34px 0 100px; }
@@ -124,8 +125,11 @@ a { color: inherit; text-decoration: none; }
   .work-intro p { margin-top: 18px; font-size: clamp(15px, 3.75vw, 24px); white-space: nowrap; }
   .work-grid { margin-top: 40px; }
   .project-card { width: 100%; height: auto; min-height: 0; padding: 0 10px 10px; flex-direction: column; gap: 18px; }
+  .project-card::before { content: ""; position: absolute; top: min(349px, 92vw); right: 0; left: 0; z-index: 2; height: 1px; background: var(--ink); pointer-events: none; }
   .project-card__mockup { width: 100%; height: min(349px, 92vw); flex-basis: auto; border-radius: 16px; }
   .project-card__mockup img {
+    --mockup-offset-x: 0px !important;
+    --mockup-render-width: 100% !important;
     -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 32px), transparent);
     mask-image: linear-gradient(to bottom, #000 calc(100% - 32px), transparent);
   }
