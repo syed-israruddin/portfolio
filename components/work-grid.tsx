@@ -11,7 +11,7 @@ type ProjectOverview = {
   hoverTextColor?: string;
   italicText?: string;
   reversed?: boolean;
-  appStoreBadge?: { alt: string };
+  appStoreBadge?: { alt: string; href: string };
 };
 
 const grainientSettings = {
@@ -44,7 +44,10 @@ const projects: ProjectOverview[] = [
     mockup: { src: "/assets/omawe-hifi-mockups.png", width: 823, height: 1408, offsetY: -36 },
     hoverColors: ["#cccccc", "#7FD4CB", "#085149"],
     italicText: "Omawe",
-    appStoreBadge: { alt: "Download Omawe on the App Store" },
+    appStoreBadge: {
+      alt: "Download Omawe on the App Store",
+      href: "https://apps.apple.com/id/app/omawe-group-trip-tracker/id6788641544?itscg=30200&itsct=apps_box_link&mttnsubad=6788641544",
+    },
   },
   {
     name: "Betterboxd",
@@ -105,7 +108,11 @@ function ProjectOverviewCard({ project }: { project: ProjectOverview }) {
             </span>
           ))}
         </p>
-        {project.appStoreBadge && <Image src="/assets/app-store-badge.svg" alt={project.appStoreBadge.alt} width={120} height={40} className="project-card__app-store-badge" />}
+        {project.appStoreBadge && (
+          <a href={project.appStoreBadge.href} target="_blank" rel="noreferrer" aria-label={project.appStoreBadge.alt}>
+            <Image src="/assets/app-store-badge.svg" alt="" width={120} height={40} className="project-card__app-store-badge" />
+          </a>
+        )}
       </div>
     </article>
   );

@@ -1,3 +1,5 @@
+import { AboutInfo } from "@/components/about-info";
+import { AboutIntro } from "@/components/about-intro";
 import { Hero } from "@/components/hero";
 import { Introduction } from "@/components/introduction";
 import { SiteHeader } from "@/components/site-header";
@@ -13,6 +15,8 @@ export default function HomePage() {
         <Introduction />
         <WorkIntro />
         <WorkGrid />
+        <AboutIntro />
+        <AboutInfo />
       </div>
     </main>
   );
