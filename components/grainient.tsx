@@ -64,9 +64,30 @@ export default function Grainient({
     const visibility = () => { pageVisible = !document.hidden; pageVisible ? start() : stop(); };
     intersection.observe(container); document.addEventListener("visibilitychange", visibility); start();
     return () => { stop(); observer.disconnect(); intersection.disconnect(); document.removeEventListener("visibilitychange", visibility); canvas.remove(); };
-  // The WebGL renderer is intentionally created once; its props are fixed for this card instance.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [
+    blendAngle,
+    blendSoftness,
+    centerX,
+    centerY,
+    color1,
+    color2,
+    color3,
+    colorBalance,
+    contrast,
+    gamma,
+    grainAmount,
+    grainAnimated,
+    grainScale,
+    noiseScale,
+    rotationAmount,
+    saturation,
+    timeSpeed,
+    warpAmplitude,
+    warpFrequency,
+    warpSpeed,
+    warpStrength,
+    zoom,
+  ]);
 
   return <div ref={ref} className={`grainient-container ${className}`.trim()} />;
 }

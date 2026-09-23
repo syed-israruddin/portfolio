@@ -1,37 +1,87 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import Grainient from "@/components/grainient";
 
-export function WorkGrid() {
+type ProjectOverview = {
+  name: string;
+  heading: string;
+  description: string;
+  mockup: { src: string; width: number; height: number; offsetY: number };
+  hoverColors: [string, string, string];
+  reversed?: boolean;
+  appStoreBadge?: { alt: string };
+};
+
+const grainientSettings = {
+  timeSpeed: 1,
+  colorBalance: 0,
+  warpStrength: 3.2,
+  warpFrequency: 5,
+  warpSpeed: 2,
+  warpAmplitude: 50,
+  blendAngle: 6,
+  blendSoftness: 0.05,
+  rotationAmount: 800,
+  noiseScale: 2,
+  grainAmount: 0.1,
+  grainScale: 2,
+  grainAnimated: false,
+  contrast: 1.5,
+  gamma: 1,
+  saturation: 1.1,
+  centerX: 0,
+  centerY: 0,
+  zoom: 1.3,
+} as const;
+
+const projects: ProjectOverview[] = [
+  {
+    name: "Omawe",
+    heading: "Transforming passive location sharing into active trip awareness.",
+    description: "Group travel means constant map checks and “Where are you?” messages. Omawe uses Live Activities to make everyone’s progress and ETA visible at a glance.",
+    mockup: { src: "/assets/omawe-hifi-mockups.png", width: 823, height: 1408, offsetY: -36 },
+    hoverColors: ["#cccccc", "#7FD4CB", "#085149"],
+    appStoreBadge: { alt: "Download Omawe on the App Store" },
+  },
+  {
+    name: "Betterboxd",
+    heading: "Rethinking how film lovers remember the movies that move them (or don’t).",
+    description: "While movie apps focus on ratings and reviews, Betterboxd creates a more personal space for film lovers to reflect through guided journaling.",
+    mockup: { src: "/assets/betterboxd-hifi-mockups.png", width: 1718, height: 2545, offsetY: -49 },
+    hoverColors: ["#525b70", "#141A27", "#AC8361"],
+    reversed: true,
+  },
+];
+
+function ProjectOverviewCard({ project }: { project: ProjectOverview }) {
+  const [color1, color2, color3] = project.hoverColors;
+  const mockupStyle = { "--mockup-offset-y": `${project.mockup.offsetY}px` } as CSSProperties;
+  const descriptionSegments = project.description.split(project.name);
+
   return (
-    <section className="work-grid" aria-label="Selected projects">
-      <article className="project-card project-card--omawe">
-        <div className="project-card__grainient" aria-hidden="true">
-          <Grainient color1="#cccccc" color2="#7FD4CB" color3="#085149" timeSpeed={1} colorBalance={0.0} warpStrength={3.2} warpFrequency={5.0} warpSpeed={2.0} warpAmplitude={50.0} blendAngle={6} blendSoftness={0.05} rotationAmount={800} noiseScale={2.0} grainAmount={0.1} grainScale={2.0} grainAnimated={false} contrast={1.5} gamma={1.0} saturation={1.1} centerX={0.0} centerY={0.0} zoom={1.3} />
-        </div>
-        <div className="project-card__mockup" aria-hidden="true">
-          <Image
-            src="/assets/omawe-hifi-mockups.png"
-            alt=""
-            width={823}
-            height={1408}
-            sizes="(max-width: 700px) calc(100vw - 68px), 302px"
-            priority
-          />
-        </div>
-        <div className="project-card__content">
-          <h3>Transforming passive location sharing into active trip awareness.</h3>
-          <p>
-            Group travel means constant map checks and “Where are you?” messages. <em>Omawe</em> uses Live Activities to make everyone’s progress and ETA visible at a glance.
-          </p>
-          <Image
-            src="/assets/app-store-badge.svg"
-            alt="Download Omawe on the App Store"
-            width={120}
-            height={40}
-            className="project-card__app-store-badge"
-          />
-        </div>
-      </article>
-    </section>
+    <article className={`project-card project-card--${project.name.toLowerCase()}${project.reversed ? " project-card--reversed" : ""}`} aria-label={`${project.name} project overview`}>
+      <div className="project-card__grainient" aria-hidden="true">
+        <Grainient color1={color1} color2={color2} color3={color3} {...grainientSettings} />
+      </div>
+      <div className="project-card__mockup" style={mockupStyle} aria-hidden="true">
+        <Image src={project.mockup.src} alt="" width={project.mockup.width} height={project.mockup.height} sizes="(max-width: 700px) calc(100vw - 68px), 302px" priority={project.name === "Omawe"} />
+      </div>
+      <div className="project-card__content">
+        <h3>{project.heading}</h3>
+        <p>
+          {descriptionSegments.map((segment, index) => (
+            <span key={`${segment}-${index}`}>
+              {segment}
+              {index < descriptionSegments.length - 1 && <em>{project.name}</em>}
+            </span>
+          ))}
+        </p>
+        {project.appStoreBadge && <Image src="/assets/app-store-badge.svg" alt={project.appStoreBadge.alt} width={120} height={40} className="project-card__app-store-badge" />}
+      </div>
+    </article>
   );
+}
+
+export function WorkGrid() {
+  return <section className="work-grid" aria-label="Selected projects">{projects.map((project) => <ProjectOverviewCard key={project.name} project={project} />)}</section>;
 }
