@@ -49,9 +49,9 @@ export function ScrollReveal({
       const wordElements = gsap.utils.toArray<HTMLElement>(".scroll-reveal-word", element);
       const triggerOptions = {
         trigger: element,
-        start: "top bottom-=20%",
-        end: "bottom bottom",
-        scrub: true,
+        start: "top 90%",
+        end: "bottom 20%",
+        scrub: 0.5,
       };
 
       gsap.fromTo(
@@ -66,7 +66,7 @@ export function ScrollReveal({
         {
           opacity: 1,
           filter: "blur(0px)",
-          stagger: 0.05,
+          stagger: 0.08,
           ease: "none",
           scrollTrigger: triggerOptions,
         },

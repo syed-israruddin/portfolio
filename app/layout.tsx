@@ -12,6 +12,7 @@ const instrumentSerif = Instrument_Serif({
 const dmSans = DM_Sans({
   subsets: ["latin"],
   weight: ["300", "700"],
+  style: ["normal", "italic"],
   variable: "--font-dm-sans",
 });
 
