@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function AboutIntro() {
   return (
-    <section className="about-intro" aria-labelledby="about-me-title">
+    <section className="about-intro" id="about-me" aria-labelledby="about-me-title">
       <h2 id="about-me-title" className="about-title" aria-label="About me">
         <Image
           src="/assets/about-me-typographic-header.png"

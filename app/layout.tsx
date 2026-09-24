@@ -22,7 +22,7 @@ const bricolageGrotesque = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: "Syed Israruddin — Product Designer",
+  title: "Syed Israruddin - Product Designer",
   description: "Portfolio of Syed Israruddin, a product designer and design engineer.",
 };
 
