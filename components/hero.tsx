@@ -11,7 +11,11 @@ export function Hero() {
           <span>Syed</span>
           <span>Israruddin.</span>
         </h1>
-        <p className="hero-specialisms">UX/UI Design · Product Thinking · Design Engineering</p>
+        <p className="hero-specialisms">
+          <span>UX/UI Design · Product Thinking</span>
+          <span className="hero-specialisms__desktop-separator" aria-hidden="true"> · </span>
+          <span>Design Engineering</span>
+        </p>
       </div>
     </section>
   );
