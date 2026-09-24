@@ -1,5 +1,6 @@
 "use client";
 
+import type { RefObject } from "react";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import { gsap } from "gsap";
 import { InertiaPlugin } from "gsap/InertiaPlugin";
@@ -28,6 +29,7 @@ export interface DotGridProps {
   resistance?: number;
   returnDuration?: number;
   className?: string;
+  interactionTargetRef?: RefObject<HTMLElement | null>;
 }
 
 interface PointerState {
@@ -65,8 +67,8 @@ const hexToRgb = (hex: string) => {
 };
 
 export default function DotGrid({
-  dotSize = 4,
-  gap = 10,
+  dotSize = 3,
+  gap = 6,
   baseColor = "#343434",
   activeColor = "#f8f7f2",
   proximity = 100,
@@ -77,6 +79,7 @@ export default function DotGrid({
   resistance = 750,
   returnDuration = 0.3,
   className = "",
+  interactionTargetRef,
 }: DotGridProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -193,7 +196,8 @@ export default function DotGrid({
 
   useEffect(() => {
     const wrapper = wrapperRef.current;
-    if (!wrapper || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const interactionTarget = interactionTargetRef?.current ?? wrapper;
+    if (!wrapper || !interactionTarget || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const updatePointer = (event: MouseEvent) => {
       const now = performance.now();
@@ -283,16 +287,16 @@ export default function DotGrid({
     };
 
     const throttledPointerUpdate = throttle(updatePointer, 50);
-    wrapper.addEventListener("mousemove", throttledPointerUpdate, { passive: true });
-    wrapper.addEventListener("mouseleave", clearPointer);
-    wrapper.addEventListener("click", createShockwave);
+    interactionTarget.addEventListener("mousemove", throttledPointerUpdate, { passive: true });
+    interactionTarget.addEventListener("mouseleave", clearPointer);
+    interactionTarget.addEventListener("click", createShockwave);
 
     return () => {
-      wrapper.removeEventListener("mousemove", throttledPointerUpdate);
-      wrapper.removeEventListener("mouseleave", clearPointer);
-      wrapper.removeEventListener("click", createShockwave);
+      interactionTarget.removeEventListener("mousemove", throttledPointerUpdate);
+      interactionTarget.removeEventListener("mouseleave", clearPointer);
+      interactionTarget.removeEventListener("click", createShockwave);
     };
-  }, [maxSpeed, proximity, resistance, returnDuration, shockRadius, shockStrength, speedTrigger]);
+  }, [interactionTargetRef, maxSpeed, proximity, resistance, returnDuration, shockRadius, shockStrength, speedTrigger]);
 
   return (
     <div ref={wrapperRef} className={`dot-grid ${className}`} aria-hidden="true">
