@@ -1,4 +1,7 @@
+"use client";
+
 import type { CSSProperties } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Grainient from "@/components/grainient";
 
@@ -80,7 +83,17 @@ const projects: ProjectOverview[] = [
   },
 ];
 
-function ProjectOverviewCard({ project }: { project: ProjectOverview }) {
+function ProjectOverviewCard({
+  project,
+  projectIndex,
+  isActive,
+  cardRef,
+}: {
+  project: ProjectOverview;
+  projectIndex: number;
+  isActive: boolean;
+  cardRef: (card: HTMLElement | null) => void;
+}) {
   const [color1, color2, color3] = project.hoverColors;
   const cardStyle = { "--hover-text-color": project.hoverTextColor ?? "var(--ink)" } as CSSProperties;
   const mockupStyle = {
@@ -91,7 +104,7 @@ function ProjectOverviewCard({ project }: { project: ProjectOverview }) {
   const descriptionSegments = project.italicText ? project.description.split(project.italicText) : [project.description];
 
   return (
-    <article className={`project-card project-card--${project.name.toLowerCase()}${project.reversed ? " project-card--reversed" : ""}`} style={cardStyle} aria-label={`${project.name} project overview`}>
+    <article ref={cardRef} data-project-index={projectIndex} className={`project-card project-card--${project.name.toLowerCase()}${project.reversed ? " project-card--reversed" : ""}${isActive ? " project-card--active" : ""}`} style={cardStyle} aria-label={`${project.name} project overview`}>
       <div className="project-card__grainient" aria-hidden="true">
         <Grainient color1={color1} color2={color2} color3={color3} {...grainientSettings} />
       </div>
@@ -119,5 +132,66 @@ function ProjectOverviewCard({ project }: { project: ProjectOverview }) {
 }
 
 export function WorkGrid() {
-  return <section className="work-grid" aria-label="Selected projects">{projects.map((project) => <ProjectOverviewCard key={project.name} project={project} />)}</section>;
+  const cardRefs = useRef<Array<HTMLElement | null>>([]);
+  const [activeProjectIndex, setActiveProjectIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const mobileQuery = window.matchMedia("(max-width: 700px)");
+    const visibleCards = new Map<number, number>();
+    let observer: IntersectionObserver | undefined;
+
+    const selectMostVisibleCard = () => {
+      const activeCard = [...visibleCards.entries()].sort(([, firstRatio], [, secondRatio]) => secondRatio - firstRatio)[0];
+      setActiveProjectIndex(activeCard?.[0] ?? null);
+    };
+
+    const observeCards = () => {
+      observer?.disconnect();
+      visibleCards.clear();
+      setActiveProjectIndex(null);
+
+      if (!mobileQuery.matches) return;
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const index = Number((entry.target as HTMLElement).dataset.projectIndex);
+            if (entry.isIntersecting) {
+              visibleCards.set(index, entry.intersectionRatio);
+            } else {
+              visibleCards.delete(index);
+            }
+          });
+          selectMostVisibleCard();
+        },
+        { rootMargin: "-40% 0px -40% 0px", threshold: 0 },
+      );
+
+      cardRefs.current.forEach((card) => card && observer?.observe(card));
+    };
+
+    observeCards();
+    mobileQuery.addEventListener("change", observeCards);
+
+    return () => {
+      observer?.disconnect();
+      mobileQuery.removeEventListener("change", observeCards);
+    };
+  }, []);
+
+  return (
+    <section className="work-grid" aria-label="Selected projects">
+      {projects.map((project, index) => (
+        <ProjectOverviewCard
+          key={project.name}
+          project={project}
+          isActive={activeProjectIndex === index}
+          cardRef={(card) => {
+            cardRefs.current[index] = card;
+          }}
+          projectIndex={index}
+        />
+      ))}
+    </section>
+  );
 }
