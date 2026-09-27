@@ -116,6 +116,8 @@ a { color: inherit; text-decoration: none; }
 .project-card:hover .project-card__grainient,
 .project-card--active .project-card__grainient { opacity: 1; }
 .project-card__content { position: relative; z-index: 1; display: flex; flex: 1; flex-direction: column; align-items: flex-start; pointer-events: none; transition: color 400ms ease; }
+.project-card__tags { display: flex; margin: 0 0 12px; padding: 0; flex-wrap: wrap; gap: 5px; list-style: none; }
+.project-card__tags li { padding: 4px 6px; border: 1px solid currentColor; font-family: var(--font-bricolage-grotesque), Arial, sans-serif; font-size: 11px; font-weight: 400; line-height: 1; }
 .project-card__content h3,
 .project-card__content p { margin: 0; letter-spacing: -0.05em; }
 .project-card__content h3 { max-width: 315px; font-family: var(--font-bricolage-grotesque), Arial, sans-serif; font-size: 20px; font-weight: 600; line-height: 1.1; }

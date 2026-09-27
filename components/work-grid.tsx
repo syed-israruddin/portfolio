@@ -60,6 +60,13 @@ function ProjectOverviewCard({
         <Image src={overview.mockup.src} alt="" width={overview.mockup.width} height={overview.mockup.height} sizes="(max-width: 700px) calc(100vw - 68px), 302px" priority={project.name === "Omawe"} />
       </div>
       <div className="project-card__content">
+        {overview.tags && (
+          <ul className="project-card__tags" aria-label={`${project.name} disciplines`}>
+            {overview.tags.map((tag) => (
+              <li key={tag}>{tag}</li>
+            ))}
+          </ul>
+        )}
         <h3>{overview.heading}</h3>
         <p>
           {descriptionSegments.map((segment, index) => (

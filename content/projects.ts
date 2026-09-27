@@ -1,6 +1,7 @@
 export type ProjectOverview = {
   heading: string;
   description: string;
+  tags?: string[];
   mockup: { src: string; width: number; height: number; offsetX?: number; offsetY: number; renderWidth?: number };
   hoverColors: [string, string, string];
   hoverTextColor?: string;
@@ -32,6 +33,7 @@ export const projects: Project[] = [
     overview: {
       heading: "Transforming passive location sharing into active trip awareness.",
       description: "Group travel means constant map checks and “Where are you?” messages. Omawe uses Live Activities to make everyone’s progress and ETA visible at a glance.",
+      tags: ["Real-time experiences", "Interaction design"],
       mockup: { src: "/assets/omawe-hifi-mockups.png", width: 823, height: 1408, offsetY: -36 },
       hoverColors: ["#cccccc", "#7FD4CB", "#085149"],
       italicText: "Omawe",
@@ -51,6 +53,7 @@ export const projects: Project[] = [
     overview: {
       heading: "Rethinking how film lovers remember the movies that move them (or don’t).",
       description: "While movie apps focus on ratings and reviews, Betterboxd creates a more personal space for film lovers to reflect through guided journaling.",
+      tags: ["User Research", "Problem Framing", "Interaction Design"],
       mockup: { src: "/assets/betterboxd-hifi-mockups.png", width: 1718, height: 2545, offsetY: -49 },
       hoverColors: ["#525b70", "#141A27", "#AC8361"],
       hoverTextColor: "#ffffff",
@@ -68,6 +71,7 @@ export const projects: Project[] = [
     overview: {
       heading: "Helping readers pick up exactly where they left off.",
       description: "Returning to a book after time away can feel overwhelming. Inspired by television’s “Previously on...” format, Jared uses AI-generated, spoiler-free recaps to help readers re-engage with their stories.",
+      tags: ["AI Product Design", "Design Engineering"],
       mockup: { src: "/assets/jared-hifi-mockups.png", width: 1129, height: 1564, offsetX: -4, offsetY: 11, renderWidth: 306 },
       hoverColors: ["#791821", "#40291b", "#3d0e13"],
       hoverTextColor: "#ffffff",
@@ -84,6 +88,7 @@ export const projects: Project[] = [
     overview: {
       heading: "Reimagining the weather app as a tool for nostalgia, reflection and storytelling.",
       description: "Most weather apps look ahead. PastCast looks back, letting users revisit historical weather and reconnect with meaningful moments through a nostalgic, personal experience.",
+      tags: ["Experience Design", "Data Storytelling", "iOS Design Principles"],
       mockup: { src: "/assets/pastcast-hifi-mockup.png", width: 1591, height: 2161, offsetY: -38 },
       hoverColors: ["#5496ff", "#83b0f8", "#f5f5f5"],
       hoverTextColor: "#000000",
