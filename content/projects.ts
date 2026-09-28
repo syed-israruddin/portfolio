@@ -91,7 +91,7 @@ export const projects: Project[] = [
       tags: ["Experience Design", "Data Storytelling", "iOS Design Principles"],
       mockup: { src: "/assets/pastcast-hifi-mockup.png", width: 1591, height: 2161, offsetY: -38 },
       hoverColors: ["#5496ff", "#83b0f8", "#f5f5f5"],
-      hoverTextColor: "#000000",
+      hoverTextColor: "#2a2a2a",
       italicText: "PastCast",
       reversed: true,
     },
