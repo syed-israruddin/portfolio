@@ -13,7 +13,7 @@ export function WorkIntro() {
         />
       </h2>
       <p>
-        Four projects shaped by curiosity, collaboration,
+        Projects shaped by curiosity, collaboration,
         <br />
         and a commitment to designing with intention.
       </p>
