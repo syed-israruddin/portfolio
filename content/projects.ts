@@ -16,6 +16,11 @@ export type Project = {
   caseStudy: {
     metaTitle: string;
     metaDescription: string;
+    headerMetadata?: {
+      summary: string;
+      role: string;
+      timeline: string;
+    };
   };
   overview?: ProjectOverview;
 };
@@ -29,6 +34,12 @@ export const projects: Project[] = [
     caseStudy: {
       metaTitle: "Omawe Case Study — Syed Israruddin",
       metaDescription: "A product design case study for Omawe, a group trip awareness app.",
+      headerMetadata: {
+        summary:
+          "Omawe is a group travel app that helps people stay aware of a shared journey through Live Activities. Everyone in a trip can see their distance and ETA to a shared destination, right from the Lock Screen and Dynamic Island.",
+        role: "Product Designer",
+        timeline: "3 Weeks",
+      },
     },
     overview: {
       heading: "Transforming passive location sharing into active trip awareness.",
