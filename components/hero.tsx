@@ -7,7 +7,7 @@ export function Hero() {
           <span>Israruddin</span>
         </h1>
         <p className="hero-specialisms">
-          <span>UX/UI Design • Design Engineering</span>
+          <span>User Experience Design • Design Engineering</span>
         </p>
       </div>
     </section>

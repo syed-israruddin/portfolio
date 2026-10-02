@@ -209,7 +209,8 @@ a { color: inherit; text-decoration: none; }
 .image-carousel__viewport { overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; }
 .image-carousel__viewport::-webkit-scrollbar { display: none; }
 .image-carousel__track { display: flex; width: max-content; gap: var(--carousel-gap); padding-inline: calc((100vw - var(--carousel-card-width)) / 2); }
-.image-carousel__slide { width: var(--carousel-card-width); aspect-ratio: 740 / 480; flex: none; scroll-snap-align: center; border: 1px solid #2a2a2a; background: #f4f4f4; }
+.image-carousel__slide { position: relative; width: var(--carousel-card-width); aspect-ratio: 740 / 480; flex: none; overflow: hidden; scroll-snap-align: center; border: 1px solid #2a2a2a; background: #f4f4f4; }
+.image-carousel__slide img { object-fit: cover; }
 .image-carousel__controls { display: flex; width: min(100% - 48px, 740px); margin: 16px auto 0; justify-content: flex-end; gap: 8px; }
 .image-carousel__controls button { display: grid; width: 36px; height: 36px; padding: 0; place-items: center; border: 1px solid #2a2a2a; border-radius: 0; background: #fcfcfb; color: #2a2a2a; font: inherit; cursor: pointer; }
 .image-carousel__controls button:hover:not(:disabled), .image-carousel__controls button:focus-visible { background: #2a2a2a; color: #fcfcfb; }

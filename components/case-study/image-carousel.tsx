@@ -1,12 +1,20 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 type ImageCarouselProps = {
   projectName: string;
 };
 
-const placeholderSlides = ["First", "Second", "Third"];
+const slides = [
+  { label: "First" },
+  {
+    label: "Omawe group travel experience",
+    src: "/assets/omawe-case-study-hero-image.png",
+  },
+  { label: "Third" },
+];
 
 export function ImageCarousel({ projectName }: ImageCarouselProps) {
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -66,16 +74,26 @@ export function ImageCarousel({ projectName }: ImageCarouselProps) {
         ref={viewportRef}
       >
         <div className="image-carousel__track">
-          {placeholderSlides.map((label, index) => (
+          {slides.map((slide, index) => (
             <div
-              aria-label={`${label} ${projectName} image placeholder`}
+              aria-label={slide.src ? `${projectName} hero image` : `${slide.label} ${projectName} image placeholder`}
               className="image-carousel__slide"
-              key={label}
+              key={slide.label}
               ref={(element) => {
                 slideRefs.current[index] = element;
               }}
               role="group"
-            />
+            >
+              {slide.src && (
+                <Image
+                  alt="Omawe group travel app interface"
+                  fill
+                  priority
+                  sizes="(max-width: 740px) calc(100vw - 48px), 740px"
+                  src={slide.src}
+                />
+              )}
+            </div>
           ))}
         </div>
       </div>
@@ -90,7 +108,7 @@ export function ImageCarousel({ projectName }: ImageCarouselProps) {
         </button>
         <button
           aria-label="Show next image"
-          disabled={activeIndex === placeholderSlides.length - 1}
+          disabled={activeIndex === slides.length - 1}
           onClick={() => scrollToSlide(activeIndex + 1)}
           type="button"
         >
