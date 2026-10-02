@@ -8,12 +8,22 @@ type ImageCarouselProps = {
 };
 
 const slides = [
-  { label: "First" },
+  {
+    label: "Omawe team",
+    src: "/assets/omawe-team-image.jpg",
+    alt: "The Omawe team with their app prototypes and design work",
+  },
   {
     label: "Omawe group travel experience",
     src: "/assets/omawe-case-study-hero-image.png",
+    alt: "Omawe group travel app interface",
   },
-  { label: "Third" },
+  {
+    label: "Omawe on the App Store",
+    src: "/assets/omawe-app-store-image.jpg",
+    alt: "Omawe available on the Apple App Store",
+    href: "https://apps.apple.com/id/app/omawe-group-trip-tracker/id6788641544?itscg=30200&itsct=apps_box_link&mttnsubad=6788641544",
+  },
 ];
 
 export function ImageCarousel({ projectName }: ImageCarouselProps) {
@@ -76,7 +86,7 @@ export function ImageCarousel({ projectName }: ImageCarouselProps) {
         <div className="image-carousel__track">
           {slides.map((slide, index) => (
             <div
-              aria-label={slide.src ? `${projectName} hero image` : `${slide.label} ${projectName} image placeholder`}
+              aria-label={slide.src ? `${projectName} ${slide.label} image` : `${slide.label} ${projectName} image placeholder`}
               className="image-carousel__slide"
               key={slide.label}
               ref={(element) => {
@@ -84,15 +94,31 @@ export function ImageCarousel({ projectName }: ImageCarouselProps) {
               }}
               role="group"
             >
-              {slide.src && (
+              {slide.src && (slide.href && activeIndex === index ? (
+                <a
+                  aria-label="View Omawe on the App Store"
+                  className="image-carousel__slide-link"
+                  href={slide.href}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <Image
+                    alt={slide.alt ?? ""}
+                    fill
+                    priority
+                    sizes="(max-width: 740px) calc(100vw - 48px), 740px"
+                    src={slide.src}
+                  />
+                </a>
+              ) : (
                 <Image
-                  alt="Omawe group travel app interface"
+                  alt={slide.alt ?? ""}
                   fill
                   priority
                   sizes="(max-width: 740px) calc(100vw - 48px), 740px"
                   src={slide.src}
                 />
-              )}
+              ))}
             </div>
           ))}
         </div>
