@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type PlaceholderImageProps = {
   label: string;
 };
@@ -39,7 +41,23 @@ export function OmaweCaseStudyContent() {
               primary actions a clear spatial relationship while keeping the interface focused
               around the trip itself.
             </p>
-            <PlaceholderImage label="Custom navigation bar image placeholder" />
+            <Image
+              alt="Omawe custom tab bar showing the Create and Join trip actions"
+              className="case-study-image"
+              height={822}
+              sizes="(max-width: 788px) calc(100vw - 48px), 740px"
+              src="/assets/omawe-custom-tab-bar.jpg"
+              width={2220}
+            />
+            <aside aria-labelledby="omawe-navigation-learning" className="case-study-insight">
+              <h3 id="omawe-navigation-learning">What we learned</h3>
+              <p>
+                After usability testing and early App Store feedback, we simplified the home
+                screen navigation. The custom interaction was memorable, but a clearer
+                two-button layout, <strong>New Trip</strong> and <strong>Join Trip</strong>, made
+                the primary actions easier to discover at a glance.
+              </p>
+            </aside>
           </div>
 
           <article className="case-study-subsection">
