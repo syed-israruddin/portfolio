@@ -239,6 +239,16 @@ a { color: inherit; text-decoration: none; }
 .case-study--not-found { display: grid; place-items: center; }
 .case-study--not-found h1 { margin: 12px 0 28px; font-family: var(--font-instrument-serif), Georgia, serif; font-size: clamp(48px, 8vw, 96px); font-style: italic; font-weight: 400; }
 
+.resume-page { min-height: 100svh; padding: 72px 24px 96px; }
+.resume-page__content { width: min(100%, 1000px); margin: 0 auto; }
+.resume-page__header { display: flex; margin-bottom: 24px; align-items: end; justify-content: space-between; gap: 24px; }
+.resume-page h1 { margin: 0; font-family: var(--font-instrument-serif), Georgia, serif; font-size: clamp(56px, 8vw, 96px); font-style: italic; font-weight: 400; line-height: 0.85; letter-spacing: -0.02em; }
+.resume-page__actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.resume-page__actions a { padding: 10px 12px; border: 1px solid #2a2a2a; font-family: var(--font-bricolage-grotesque), Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 1; transition: background-color 200ms ease, color 200ms ease; }
+.resume-page__actions a:hover, .resume-page__actions a:focus-visible { background: #2a2a2a; color: #fcfcfb; }
+.resume-page__actions a:focus-visible { outline: 2px solid #2a2a2a; outline-offset: 3px; }
+.resume-page__viewer { display: block; width: 100%; height: min(78svh, 1100px); border: 1px solid #2a2a2a; background: #fcfcfb; }
+
 @media (max-width: 700px) {
   .page-shell { width: min(100% - 48px, 400px); padding: 34px 0 100px; }
   .site-header { justify-content: center; }
@@ -278,6 +288,9 @@ a { color: inherit; text-decoration: none; }
   .case-study__back { margin-bottom: 80px; }
   .case-study__header > p:last-child { font-size: 18px; }
   .case-study__placeholder { margin-top: 72px; }
+  .resume-page { padding: 48px 24px 72px; }
+  .resume-page__header { align-items: flex-start; flex-direction: column; }
+  .resume-page__viewer { height: 70svh; }
   .project-card { width: 100%; height: auto; min-height: 0; padding: 0 10px 10px; flex-direction: column; gap: 18px; }
   .project-card::before { content: ""; position: absolute; top: min(349px, 92vw); right: 0; left: 0; z-index: 2; height: 1px; background: var(--ink); pointer-events: none; }
   .project-card__mockup { width: 100%; height: min(349px, 92vw); flex-basis: auto; border-radius: 16px; }
