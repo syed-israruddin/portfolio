@@ -2,10 +2,17 @@ import Image from "next/image";
 
 type PlaceholderImageProps = {
   label: string;
+  className?: string;
 };
 
-function PlaceholderImage({ label }: PlaceholderImageProps) {
-  return <div aria-label={label} className="case-study-image-placeholder" role="img" />;
+function PlaceholderImage({ label, className = "" }: PlaceholderImageProps) {
+  return (
+    <div
+      aria-label={label}
+      className={`case-study-image-placeholder ${className}`.trim()}
+      role="img"
+    />
+  );
 }
 
 export function OmaweCaseStudyContent() {
@@ -134,6 +141,114 @@ export function OmaweCaseStudyContent() {
               what the app needs to say when there is only a second to look.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="case-study-section" aria-labelledby="omawe-contribution">
+        <div className="case-study-section__content case-study-section__content--contribution">
+          <h2 id="omawe-contribution">My Contribution</h2>
+          <div className="case-study-contribution-grid">
+            <article className="case-study-contribution-card">
+              <h3>01 / Product Design</h3>
+              <p>
+                From early concepts to the final interface, I contributed to shaping how Omawe
+                looks, feels, and works. I explored user flows, designed key interactions,
+                refined the visual hierarchy, and worked through the details that helped turn
+                the concept into a cohesive product.
+              </p>
+            </article>
+            <article className="case-study-contribution-card">
+              <h3>02 / Visual &amp; Interaction Design</h3>
+              <p>
+                I took particular ownership of Omawe&apos;s visual language, from typography,
+                spacing, iconography, and components to the interaction details across the app.
+                I also helped extend this language into the Live Activity, Dynamic Island,
+                onboarding, and other supporting experiences.
+              </p>
+            </article>
+            <article className="case-study-contribution-card">
+              <h3>03 / Frontend Development</h3>
+              <p>
+                Alongside design, I contributed to building the product in SwiftUI, helping
+                translate our designs into the frontend and refine the interface as it came
+                together. This gave me the opportunity to work across both design and
+                implementation, seeing how design decisions translate into a working product.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="case-study-section" aria-labelledby="omawe-design-document">
+        <div className="case-study-section__content case-study-section__content--detailed">
+          <div className="case-study-section__intro">
+            <h2 id="omawe-design-document">Design Document</h2>
+            <p>
+              A cohesive product needed more than individual screens. I developed a shared visual
+              system across typography, colour, spacing, iconography, components, and interaction
+              states, giving Omawe a consistent visual language from the main app to the Live
+              Activity and Dynamic Island.
+            </p>
+            <p>
+              Below is the full design document that guided the product from concept through to
+              the final interface.
+            </p>
+          </div>
+          <PlaceholderImage
+            className="case-study-image-placeholder--document"
+            label="Omawe design document preview"
+          />
+        </div>
+      </section>
+
+      <section className="case-study-section" aria-labelledby="omawe-onboarding">
+        <div className="case-study-section__content case-study-section__content--detailed">
+          <div className="case-study-section__intro">
+            <h2 id="omawe-onboarding">Onboarding</h2>
+            <div className="case-study-onboarding-preview" aria-label="Omawe onboarding preview" role="img">
+              <span />
+              <span />
+              <span />
+            </div>
+            <p>
+              I explored LottieFiles to bring Omawe&apos;s onboarding to life, using animation to
+              guide attention, create continuity between screens, and give the experience a
+              little more personality.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="case-study-section" aria-labelledby="omawe-app-store">
+        <div className="case-study-section__content case-study-section__content--detailed">
+          <div className="case-study-section__intro">
+            <h2 id="omawe-app-store">From Concept to the App Store</h2>
+            <p>
+              Omawe started as a team concept and became a fully shipped product. After weeks of
+              designing, building, testing, and refining, we released Omawe on the App Store,
+              making the experience available beyond our Academy team. Seeing our work move from
+              sketches and prototypes into something people can actually use was one of the most
+              rewarding parts of the project.
+            </p>
+            <Image
+              alt="Omawe available on the Apple App Store"
+              className="case-study-image"
+              height={1464}
+              sizes="(max-width: 788px) calc(100vw - 48px), 740px"
+              src="/assets/omawe-app-store-image.jpg"
+              width={2232}
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="case-study-section" aria-labelledby="omawe-reflection">
+        <div className="case-study-section__content case-study-section__content--detailed">
+          <h2 id="omawe-reflection">Reflection</h2>
+          <PlaceholderImage
+            className="case-study-image-placeholder--reflection"
+            label="Omawe main page preview"
+          />
         </div>
       </section>
     </div>
