@@ -1,35 +1,25 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { CaseStudyImageViewer } from "./case-study-image-viewer";
 
 type ImageCarouselProps = {
+  initialIndex?: number;
   projectName: string;
+  slides: Array<{
+    alt: string;
+    label: string;
+    src?: string;
+  }>;
 };
 
-const slides = [
-  {
-    label: "Omawe team",
-    src: "/assets/omawe-team-image.jpg",
-    alt: "The Omawe team with their app prototypes and design work",
-  },
-  {
-    label: "Omawe group travel experience",
-    src: "/assets/omawe-case-study-hero-image.png",
-    alt: "Omawe group travel app interface",
-  },
-  {
-    label: "Omawe on the App Store",
-    src: "/assets/omawe-app-store-image.jpg",
-    alt: "Omawe available on the Apple App Store",
-    href: "https://apps.apple.com/id/app/omawe-group-trip-tracker/id6788641544?itscg=30200&itsct=apps_box_link&mttnsubad=6788641544",
-  },
-];
-
-export function ImageCarousel({ projectName }: ImageCarouselProps) {
+export function ImageCarousel({ initialIndex = 0, projectName, slides }: ImageCarouselProps) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const slideRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(initialIndex);
+  const gallerySlides = slides.filter(
+    (slide): slide is { alt: string; label: string; src: string } => slide.src !== undefined,
+  );
 
   const scrollToSlide = (index: number, behavior: ScrollBehavior = "smooth") => {
     const viewport = viewportRef.current;
@@ -44,15 +34,15 @@ export function ImageCarousel({ projectName }: ImageCarouselProps) {
   };
 
   useEffect(() => {
-    const centerSecondSlide = () => scrollToSlide(1, "auto");
-    const frame = requestAnimationFrame(centerSecondSlide);
-    window.addEventListener("resize", centerSecondSlide);
+    const centerInitialSlide = () => scrollToSlide(initialIndex, "auto");
+    const frame = requestAnimationFrame(centerInitialSlide);
+    window.addEventListener("resize", centerInitialSlide);
 
     return () => {
       cancelAnimationFrame(frame);
-      window.removeEventListener("resize", centerSecondSlide);
+      window.removeEventListener("resize", centerInitialSlide);
     };
-  }, []);
+  }, [initialIndex]);
 
   const updateActiveSlide = () => {
     const viewport = viewportRef.current;
@@ -86,39 +76,34 @@ export function ImageCarousel({ projectName }: ImageCarouselProps) {
         <div className="image-carousel__track">
           {slides.map((slide, index) => (
             <div
-              aria-label={slide.src ? `${projectName} ${slide.label} image` : `${slide.label} ${projectName} image placeholder`}
               className="image-carousel__slide"
               key={slide.label}
               ref={(element) => {
                 slideRefs.current[index] = element;
               }}
-              role="group"
             >
-              {slide.src && (slide.href && activeIndex === index ? (
-                <a
-                  aria-label="View Omawe on the App Store"
-                  className="image-carousel__slide-link"
-                  href={slide.href}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <Image
-                    alt={slide.alt ?? ""}
-                    fill
-                    priority
-                    sizes="(max-width: 740px) calc(100vw - 48px), 740px"
-                    src={slide.src}
-                  />
-                </a>
-              ) : (
-                <Image
+              {slide.src && (
+                <CaseStudyImageViewer
                   alt={slide.alt ?? ""}
+                  className="image-carousel__slide-viewer"
                   fill
-                  priority
+                  gallery={gallerySlides.map(({ alt, src }) => ({ alt, src }))}
+                  galleryIndex={gallerySlides.findIndex(({ src }) => src === slide.src)}
+                  height={480}
+                  imageClassName="image-carousel__slide-image"
+                  preload={index === 1}
                   sizes="(max-width: 740px) calc(100vw - 48px), 740px"
                   src={slide.src}
+                  width={740}
                 />
-              ))}
+              )}
+              {!slide.src && (
+                <div
+                  aria-label={slide.alt}
+                  className="image-carousel__placeholder"
+                  role="img"
+                />
+              )}
             </div>
           ))}
         </div>

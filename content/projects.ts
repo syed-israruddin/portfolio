@@ -20,6 +20,16 @@ export type Project = {
       summary: string;
       role: string;
       timeline: string;
+      team?: string;
+      deliverable?: string;
+    };
+    heroCarousel?: {
+      initialIndex?: number;
+      slides: Array<{
+        alt: string;
+        label: string;
+        src?: string;
+      }>;
     };
   };
   overview?: ProjectOverview;
@@ -39,6 +49,26 @@ export const projects: Project[] = [
           "Omawe is a group travel app that helps people stay aware of a shared journey through Live Activities. Everyone in a trip can see their distance and ETA to a shared destination, right from the Lock Screen and Dynamic Island.",
         role: "Product Designer",
         timeline: "3 Weeks",
+      },
+      heroCarousel: {
+        initialIndex: 1,
+        slides: [
+          {
+            label: "Omawe team",
+            src: "/assets/omawe-team-image.jpg",
+            alt: "The Omawe team with their app prototypes and design work",
+          },
+          {
+            label: "Omawe group travel experience",
+            src: "/assets/omawe-case-study-hero-image.png",
+            alt: "Omawe group travel app interface",
+          },
+          {
+            label: "Omawe on the App Store",
+            src: "/assets/omawe-app-store-image.jpg",
+            alt: "Omawe available on the Apple App Store",
+          },
+        ],
       },
     },
     overview: {
@@ -60,6 +90,22 @@ export const projects: Project[] = [
     caseStudy: {
       metaTitle: "Betterboxd Case Study — Syed Israruddin",
       metaDescription: "A product design case study for Betterboxd, a reflective journaling space for film lovers.",
+      headerMetadata: {
+        summary:
+          "Betterboxd is a reflective journaling space that helps film lovers hold on to the movies that move them.",
+        role: "Lead Product Designer",
+        timeline: "6 weeks",
+        team: "6 Designers",
+        deliverable: "End-to-end Interactive High-Fidelity Prototype",
+      },
+      heroCarousel: {
+        initialIndex: 1,
+        slides: [
+          { label: "Betterboxd hero image one", alt: "Betterboxd case study image placeholder" },
+          { label: "Betterboxd hero image two", alt: "Betterboxd case study image placeholder" },
+          { label: "Betterboxd hero image three", alt: "Betterboxd case study image placeholder" },
+        ],
+      },
     },
     overview: {
       heading: "Rethinking how film lovers remember the movies that move them (or don’t).",

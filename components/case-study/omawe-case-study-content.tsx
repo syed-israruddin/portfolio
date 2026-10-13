@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { CaseStudyImageViewer } from "./case-study-image-viewer";
 
 type PlaceholderImageProps = {
   label: string;
@@ -48,7 +48,7 @@ export function OmaweCaseStudyContent() {
               primary actions a clear spatial relationship while keeping the interface focused
               around the trip itself.
             </p>
-            <Image
+            <CaseStudyImageViewer
               alt="Omawe custom tab bar showing the Create and Join trip actions"
               className="case-study-image"
               height={822}
@@ -230,7 +230,7 @@ export function OmaweCaseStudyContent() {
               sketches and prototypes into something people can actually use was one of the most
               rewarding parts of the project.
             </p>
-            <Image
+            <CaseStudyImageViewer
               alt="Omawe available on the Apple App Store"
               className="case-study-image"
               height={1464}
