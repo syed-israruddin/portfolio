@@ -7,6 +7,7 @@ export type ProjectOverview = {
   hoverTextColor?: string;
   italicText?: string;
   reversed?: boolean;
+  caseStudyStatus: string;
   appStoreBadge?: { alt: string; href: string };
 };
 
@@ -78,6 +79,7 @@ export const projects: Project[] = [
       mockup: { src: "/assets/omawe-hifi-mockups.png", width: 823, height: 1408, offsetY: -36 },
       hoverColors: ["#cccccc", "#7FD4CB", "#085149"],
       italicText: "Omawe",
+      caseStudyStatus: "Case study in progress",
       appStoreBadge: {
         alt: "Download Omawe on the App Store",
         href: "https://apps.apple.com/id/app/omawe-group-trip-tracker/id6788641544?itscg=30200&itsct=apps_box_link&mttnsubad=6788641544",
@@ -122,6 +124,7 @@ export const projects: Project[] = [
       hoverColors: ["#525b70", "#141A27", "#AC8361"],
       hoverTextColor: "#ffffff",
       italicText: "Betterboxd",
+      caseStudyStatus: "View Case Study",
       reversed: true,
     },
   },
@@ -140,6 +143,7 @@ export const projects: Project[] = [
       hoverColors: ["#791821", "#40291b", "#3d0e13"],
       hoverTextColor: "#ffffff",
       italicText: "Jared",
+      caseStudyStatus: "Case study coming soon",
     },
   },
   {
@@ -157,6 +161,7 @@ export const projects: Project[] = [
       hoverColors: ["#5496ff", "#83b0f8", "#f5f5f5"],
       hoverTextColor: "#2a2a2a",
       italicText: "PastCast",
+      caseStudyStatus: "Case study coming soon",
       reversed: true,
     },
   },
@@ -170,8 +175,13 @@ export const projects: Project[] = [
   },
 ];
 
-export const overviewProjects: ProjectWithOverview[] = projects.filter(
-  (project): project is ProjectWithOverview => project.overview !== undefined,
-);
+const overviewProjectOrder = ["betterboxd", "omawe", "jared", "pastcast"];
+
+export const overviewProjects: ProjectWithOverview[] = projects
+  .filter((project): project is ProjectWithOverview => project.overview !== undefined)
+  .sort(
+    (first, second) =>
+      overviewProjectOrder.indexOf(first.slug) - overviewProjectOrder.indexOf(second.slug),
+  );
 
 export const getProjectBySlug = (slug: string) => projects.find((project) => project.slug === slug);

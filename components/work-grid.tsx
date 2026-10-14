@@ -96,6 +96,9 @@ function ProjectOverviewCard({
           </a>
         )}
       </div>
+      <span aria-hidden="true" className="project-card__case-study-status">
+        {overview.caseStudyStatus}
+      </span>
     </article>
   );
 }
