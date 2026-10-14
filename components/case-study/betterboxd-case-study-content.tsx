@@ -40,6 +40,11 @@ export function BetterboxdCaseStudyContent() {
                 className="case-study-accordion__panel case-study-section__content--detailed"
                 aria-labelledby="betterboxd-journaling-experience"
               >
+          <CaseStudyFigure
+            alt="Betterboxd journalling user flow across all screens"
+            caption="Journalling User Flow - All Screens"
+            src="/assets/betterboxd-journalling-user-flow-all-screens.jpg"
+          />
           <article className="case-study-subsection">
             <h3>Finding the Right Balance</h3>
             <p>
