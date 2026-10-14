@@ -196,21 +196,127 @@ export function BetterboxdCaseStudyContent() {
 
             <details className="case-study-accordion__item">
               <summary>
-                <h2>Formulating the Tab Bar</h2>
+                <h2>Designing the Entry into Journaling</h2>
                 <span aria-hidden="true" className="case-study-accordion__chevron">›</span>
               </summary>
-              <div className="case-study-accordion__panel case-study-accordion__panel--empty">
-                <p>Case study content coming soon.</p>
+              <div className="case-study-accordion__panel case-study-section__content--detailed">
+                <article className="case-study-subsection">
+                  <h3>A Direct Path to Journaling</h3>
+                  <p>
+                    We wanted journaling to feel like a distinct experience within Betterboxd,
+                    while remaining seamlessly connected to the rest of the app. As the
+                    product&apos;s central feature, we felt that starting a new journal entry
+                    deserved more prominence than a conventional tab bar item.
+                  </p>
+                  <p>
+                    We introduced a dedicated Add Journal button, visually separated from the
+                    rest of the navigation and positioned in the bottom-right corner. Its
+                    distinctive circular treatment was intended to make the action immediately
+                    recognisable and accessible, giving users a consistent entry point to the
+                    journaling experience.
+                  </p>
+                  <p>
+                    But making the button prominent was only part of the solution. We also
+                    wanted to minimise the steps between deciding to journal and actually
+                    beginning.
+                  </p>
+                  <p>
+                    Rather than directing users through the app&apos;s broader search experience,
+                    the button opens a dedicated, simplified film search. By removing unrelated
+                    search categories and displaying only films, we kept the interface focused
+                    on the task at hand.
+                  </p>
+                  <p>From there, users simply select a film and begin journaling.</p>
+                  <p>
+                    This creates a more direct alternative to the standard discovery flow, where
+                    users would otherwise need to search for a film, navigate to its details
+                    page, and then locate the journaling action.
+                  </p>
+                </article>
+
+                <CaseStudyFigure
+                  alt="Comparison of Betterboxd's standard search and dedicated journal entry flows"
+                  caption="Comparing the standard search journey with a dedicated entry point designed to reduce the steps required to begin journaling."
+                  src="/assets/betterboxd-journal-entry-flow-comparison.jpg"
+                />
+
+                <p>
+                  By giving journaling its own entry point and streamlined search experience, we
+                  aimed to make the app&apos;s most important interaction prominent, predictable,
+                  and easy to initiate.
+                </p>
+
+                <article className="case-study-subsection">
+                  <h3>The Buffer Page: Creating a Moment of Intentionality</h3>
+                  <p>
+                    While we wanted to minimise the effort required to begin journaling, we
+                    didn&apos;t necessarily want the transition into reflection to feel
+                    instantaneous.
+                  </p>
+                  <p>
+                    After selecting a film, users arrive at a dedicated introductory screen
+                    featuring its artwork and key details. This was a deliberate pause, designed
+                    to help users acknowledge the film they were about to reflect on before
+                    stepping into the journaling experience.
+                  </p>
+                  <p>
+                    We also introduced an upward swipe gesture to begin journaling, turning the
+                    transition into a small, intentional action.
+                  </p>
+                  <p>
+                    Rather than treating every additional interaction as unnecessary friction, we
+                    wanted this moment to serve a purpose: creating a clear separation between
+                    finding a film and reflecting on it.
+                  </p>
+                </article>
+
+                <CaseStudyFigure
+                  alt="Final Betterboxd journal entry flow from film selection to reflection"
+                  caption="A streamlined journey from selecting a film to entering a reflective mindset, with an intentional pause before journaling begins."
+                  src="/assets/betterboxd-final-journal-entry-flow.jpg"
+                />
               </div>
             </details>
 
             <details className="case-study-accordion__item">
               <summary>
-                <h2>Simplifying the search bar</h2>
+                <h2>Simplifying Search</h2>
                 <span aria-hidden="true" className="case-study-accordion__chevron">›</span>
               </summary>
-              <div className="case-study-accordion__panel case-study-accordion__panel--empty">
-                <p>Case study content coming soon.</p>
+              <div className="case-study-accordion__panel case-study-section__content--detailed">
+                <article className="case-study-subsection">
+                  <h3>Separating Discovery from Personal History</h3>
+                  <p>
+                    One of the challenges we faced when designing the search experience was
+                    accommodating two distinct needs: exploring a broader database of films,
+                    actors, and directors, and quickly finding movies users had already
+                    journaled about.
+                  </p>
+                  <p>
+                    While we wanted to provide access to useful film information, we were
+                    conscious of Betterboxd&apos;s identity as a personal journaling app rather than
+                    an extensive film encyclopaedia. We explored different ways to organise these
+                    search experiences before drawing inspiration from Apple Music&apos;s approach to
+                    separating its wider catalogue from a user&apos;s personal library.
+                  </p>
+                  <p>
+                    Adapting this familiar pattern, we divided the search interface into two
+                    tabs: All Movies and Journaled.
+                  </p>
+                  <p>
+                    The first gives users access to the broader film database, including actors
+                    and directors, while the second narrows the results to films they&apos;ve
+                    previously reflected on. This distinction allowed us to accommodate discovery
+                    without losing sight of Betterboxd&apos;s central purpose. Users could explore
+                    the world of film while remaining one step away from their own reflections.
+                  </p>
+                </article>
+
+                <CaseStudyFigure
+                  alt="Betterboxd search interface showing All Movies and Journaled tabs"
+                  caption="Separating the broader film catalogue from previously journaled films through a familiar tabbed search interface."
+                  src="/assets/betterboxd-search-options.jpg"
+                />
               </div>
             </details>
 

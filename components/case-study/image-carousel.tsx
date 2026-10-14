@@ -91,7 +91,7 @@ export function ImageCarousel({ initialIndex = 0, projectName, slides }: ImageCa
                   galleryIndex={gallerySlides.findIndex(({ src }) => src === slide.src)}
                   height={480}
                   imageClassName="image-carousel__slide-image"
-                  preload={index === 1}
+                  preload={index === initialIndex}
                   sizes="(max-width: 740px) calc(100vw - 48px), 740px"
                   src={slide.src}
                   width={740}

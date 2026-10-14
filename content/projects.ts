@@ -92,18 +92,25 @@ export const projects: Project[] = [
       metaDescription: "A product design case study for Betterboxd, a reflective journaling space for film lovers.",
       headerMetadata: {
         summary:
-          "Betterboxd is a reflective journaling space that helps film lovers hold on to the movies that move them.",
+          "Betterboxd challenges the traditional film-tracking experience by shifting the focus from rating movies to reflecting on them. Through thoughtful prompts and flexible ways to express themselves, users can explore and preserve their personal connection to film.",
         role: "Lead Product Designer",
         timeline: "6 weeks",
         team: "6 Designers",
         deliverable: "End-to-end Interactive High-Fidelity Prototype",
       },
       heroCarousel: {
-        initialIndex: 1,
+        initialIndex: 0,
         slides: [
-          { label: "Betterboxd hero image one", alt: "Betterboxd case study image placeholder" },
-          { label: "Betterboxd hero image two", alt: "Betterboxd case study image placeholder" },
-          { label: "Betterboxd hero image three", alt: "Betterboxd case study image placeholder" },
+          {
+            label: "Betterboxd journalling experience",
+            alt: "Betterboxd journalling experience on mobile",
+            src: "/assets/betterboxd-hero-graphic.jpg",
+          },
+          {
+            label: "Betterboxd design team",
+            alt: "The Betterboxd design team",
+            src: "/assets/betterboxd-hero-team.jpg",
+          },
         ],
       },
     },
