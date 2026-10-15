@@ -33,6 +33,76 @@ export function BetterboxdCaseStudyContent() {
           <div className="case-study-accordion">
             <details className="case-study-accordion__item" open>
               <summary>
+                <h2 id="betterboxd-project-overview">Project Overview</h2>
+                <span aria-hidden="true" className="case-study-accordion__chevron">›</span>
+              </summary>
+              <div
+                className="case-study-accordion__panel case-study-section__content--detailed"
+                aria-labelledby="betterboxd-project-overview"
+              >
+                <article className="case-study-subsection">
+                  <h3>Identifying the Opportunity</h3>
+                  <p>
+                    Betterboxd was developed over six weeks by a team of six as part of one of
+                    our earliest challenges at the Apple Developer Academy. The challenge began
+                    with interviewing fellow learners to uncover frustrations, unmet needs, and
+                    opportunities where we could create meaningful impact.
+                  </p>
+                  <p>
+                    As we explored the media review space, a recurring concern emerged: online
+                    opinions often felt polarising, lacking nuance, and, at times, unnecessarily
+                    hostile. Our interviews highlighted how quickly review communities could
+                    become toxic, revealing an opportunity to rethink how people share and
+                    engage with their opinions.
+                  </p>
+                  <p>
+                    Rather than creating another platform centred around public ratings and
+                    reviews, we saw potential in a more personal approach.
+                  </p>
+                  <p>
+                    This insight helped shape Betterboxd:
+                  </p>
+                  <blockquote className="case-study-quote">
+                    A guided film-journaling experience that shifts the focus from defending
+                    opinions to exploring them.
+                  </blockquote>
+                </article>
+
+                <article className="case-study-subsection">
+                  <h3>My Role: Lead Product Designer</h3>
+                  <p>
+                    As the team&apos;s appointed Lead Product Designer, I helped shape Betterboxd&apos;s
+                    initial concept and was involved in design decisions throughout the project,
+                    from early ideation to the final interactive high-fidelity prototype.
+                  </p>
+                  <p>
+                    My responsibilities spanned the broader product experience, including
+                    defining user flows, exploring interaction patterns, evaluating design
+                    alternatives, and shaping the overall interface.
+                  </p>
+                  <p>
+                    Beyond the design work itself, a significant part of my role involved
+                    facilitating discussions and navigating differing perspectives within the
+                    team.
+                  </p>
+                  <p>
+                    With six people bringing their own ideas and strong opinions to the table,
+                    disagreements were frequent. I learned to approach these conversations not
+                    as obstacles, but as opportunities to challenge assumptions, understand
+                    different viewpoints, and work towards decisions that supported the
+                    product&apos;s vision.
+                  </p>
+                  <p>
+                    As my first experience leading product design within a collaborative project,
+                    Betterboxd was an important introduction to both the practical and
+                    interpersonal responsibilities of the role.
+                  </p>
+                </article>
+              </div>
+            </details>
+
+            <details className="case-study-accordion__item">
+              <summary>
                 <h2 id="betterboxd-journaling-experience">The Main Journaling Experience</h2>
                 <span aria-hidden="true" className="case-study-accordion__chevron">›</span>
               </summary>
@@ -113,12 +183,15 @@ export function BetterboxdCaseStudyContent() {
               Inspired by our team&apos;s habit of sending voice notes to friends after watching
               films, we introduced voice recording as an alternative to typing.
             </p>
+            <p>Beyond providing another way to express thoughts, we were drawn to the idea of:</p>
+            <blockquote className="case-study-quote">
+              Preserving not just what someone thought about a film, but how they felt in that
+              moment.
+            </blockquote>
             <p>
-              Beyond providing another way to express thoughts, we were drawn to the idea of
-              preserving not just what someone thought about a film, but how they felt in that
-              moment. Tone, excitement, and hesitation can convey emotions that written words
-              alone may not fully capture, allowing users to revisit their reflections through
-              the voice of their past self.
+              Tone, excitement, and hesitation can convey emotions that written words alone may
+              not fully capture, allowing users to revisit their reflections through the voice
+              of their past self.
             </p>
             <p>
               For the recording interaction, we drew inspiration from Instagram&apos;s familiar voice
@@ -187,9 +260,11 @@ export function BetterboxdCaseStudyContent() {
             </p>
             <p>
               While this meant potentially sacrificing some rating precision, we considered it a
-              worthwhile trade-off. Ratings were intended to complement the journaling experience,
-              not define it.
+              worthwhile trade-off.
             </p>
+            <blockquote className="case-study-quote">
+              Ratings were intended to complement the journaling experience, not define it.
+            </blockquote>
           </article>
               </div>
             </details>
@@ -322,11 +397,84 @@ export function BetterboxdCaseStudyContent() {
 
             <details className="case-study-accordion__item">
               <summary>
-                <h2>The full picture</h2>
+                <h2>Reflections &amp; Takeaways</h2>
                 <span aria-hidden="true" className="case-study-accordion__chevron">›</span>
               </summary>
-              <div className="case-study-accordion__panel case-study-accordion__panel--empty">
-                <p>Case study content coming soon.</p>
+              <div className="case-study-accordion__panel case-study-section__content--detailed">
+                <article className="case-study-subsection">
+                  <h3>The Power of Restraint</h3>
+                  <p>
+                    Going into Betterboxd, I underestimated just how much thought and
+                    deliberation would go into designing something seemingly simple.
+                  </p>
+                  <p>
+                    One of the most valuable lessons I took from the challenge was the
+                    importance of designing with intention, particularly knowing when to stop.
+                  </p>
+                  <p>
+                    During an Academy session, our Head of Academy introduced us
+                    to the power of restraint in design.
+                  </p>
+                  <blockquote className="case-study-quote">
+                    Good design is as much about what you choose to leave out as what you choose
+                    to include.
+                  </blockquote>
+                  <p>That idea fundamentally changed how I approached the project.</p>
+                  <p>
+                    This philosophy became a guiding principle throughout Betterboxd. From
+                    limiting the number of reflection prompts to carefully considering the
+                    placement of ratings, we continually questioned whether each element
+                    genuinely contributed to the experience we wanted to create.
+                  </p>
+                  <p>
+                    I learned that designing a thoughtful experience doesn&apos;t necessarily mean
+                    introducing more features or removing every possible interaction. It means
+                    understanding what deserves the user&apos;s attention, what can be simplified,
+                    and where a deliberate moment of pause can add value.
+                  </p>
+                </article>
+
+                <article className="case-study-subsection">
+                  <h3>Learning to Lead Through Collaboration</h3>
+                  <p>
+                    As my first experience leading product design within a team, Betterboxd also
+                    challenged my understanding of collaboration. Working alongside five equally
+                    passionate teammates meant navigating frequent disagreements, competing
+                    ideas, and different perspectives on what the product should become.
+                  </p>
+                  <p>
+                    I quickly learned that design leadership wasn&apos;t about having the strongest
+                    opinion or the final say. It was about creating space for healthy discussion,
+                    being receptive to ideas that challenged my own, and helping the team find
+                    common ground without losing sight of our shared vision.
+                  </p>
+                  <p>
+                    The experience taught me to value the process of arriving at a decision just
+                    as much as the decision itself.
+                  </p>
+                </article>
+
+                <article className="case-study-subsection">
+                  <h3>Looking Ahead</h3>
+                  <p>
+                    While Betterboxd culminated in an interactive high-fidelity prototype, there
+                    are still aspects of the experience I&apos;d love to explore through usability
+                    testing.
+                  </p>
+                  <p>
+                    I&apos;d be particularly interested in understanding how users respond to the
+                    guiding prompts, whether the intentional transition into journaling
+                    encourages a more reflective mindset, and where the experience could be
+                    simplified further.
+                  </p>
+                  <p>
+                    Ultimately, Betterboxd gave me a much deeper appreciation for the complexity
+                    behind seemingly simple experiences.
+                  </p>
+                  <blockquote className="case-study-quote">
+                    Every element should earn its place in a design.
+                  </blockquote>
+                </article>
               </div>
             </details>
           </div>
