@@ -1,9 +1,18 @@
 import localFont from "next/font/local";
 
 export const instrumentSerif = localFont({
-  src: "./fonts/instrument-serif-italic-latin.woff2",
-  weight: "400",
-  style: "italic",
+  src: [
+    {
+      path: "./fonts/instrument-serif-regular-latin.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/instrument-serif-italic-latin.woff2",
+      weight: "400",
+      style: "italic",
+    },
+  ],
   display: "swap",
   fallback: ["Georgia", "serif"],
   adjustFontFallback: "Times New Roman",

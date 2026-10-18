@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Grainient from "@/components/grainient";
+import { ProjectCaseStudyPreview } from "@/components/project-case-study-preview";
 import { overviewProjects, type ProjectWithOverview } from "@/content/projects";
 
 const grainientSettings = {
@@ -34,15 +35,11 @@ function ProjectOverviewCard({
   projectIndex,
   isActive,
   cardRef,
-  carouselPosition,
-  onCarouselFocus,
 }: {
   project: ProjectWithOverview;
   projectIndex: number;
   isActive: boolean;
   cardRef: (card: HTMLElement | null) => void;
-  carouselPosition?: "focused" | "adjacent";
-  onCarouselFocus?: () => void;
 }) {
   const { overview } = project;
   const [color1, color2, color3] = overview.hoverColors;
@@ -53,23 +50,13 @@ function ProjectOverviewCard({
     "--mockup-render-width": overview.mockup.renderWidth ? `${overview.mockup.renderWidth}px` : "100%",
   } as CSSProperties;
   const descriptionSegments = overview.italicText ? overview.description.split(overview.italicText) : [overview.description];
-  const isCarouselAdjacent = carouselPosition === "adjacent";
 
   return (
-    <article ref={cardRef} data-project-index={projectIndex} className={`project-card project-card--${project.slug}${overview.reversed ? " project-card--reversed" : ""}${isActive ? " project-card--active" : ""}${carouselPosition ? ` project-card--carousel-${carouselPosition}` : ""}`} style={cardStyle} aria-label={`${project.name} project overview`}>
+    <article ref={cardRef} data-project-index={projectIndex} className={`project-card project-card--${project.slug}${overview.reversed ? " project-card--reversed" : ""}${isActive ? " project-card--active" : ""}`} style={cardStyle} aria-label={`${project.name} project overview`}>
       <div className="project-card__grainient" aria-hidden="true">
         <Grainient color1={color1} color2={color2} color3={color3} {...grainientSettings} />
       </div>
-      {isCarouselAdjacent ? (
-        <button
-          aria-label={`Focus ${project.name} project`}
-          className="project-card__carousel-focus-button"
-          onClick={onCarouselFocus}
-          type="button"
-        />
-      ) : (
-        <Link className="project-card__case-study-link" href={`/work/${project.slug}`} aria-label={`View the ${project.name} case study`} />
-      )}
+      <Link className="project-card__case-study-link" href={`/work/${project.slug}`} aria-label={`View the ${project.name} case study`} />
       <div className="project-card__mockup" style={mockupStyle} aria-hidden="true">
         <Image src={overview.mockup.src} alt="" width={overview.mockup.width} height={overview.mockup.height} sizes="(max-width: 700px) calc(100vw - 68px), 302px" priority={project.name === "Omawe"} />
       </div>
@@ -90,7 +77,7 @@ function ProjectOverviewCard({
             </span>
           ))}
         </p>
-        {!isCarouselAdjacent && overview.appStoreBadge && (
+        {overview.appStoreBadge && (
           <a className="project-card__app-store-link" href={overview.appStoreBadge.href} target="_blank" rel="noreferrer" aria-label={overview.appStoreBadge.alt}>
             <Image src="/assets/app-store-badge.svg" alt="" width={120} height={40} className="project-card__app-store-badge" />
           </a>
@@ -106,8 +93,9 @@ function ProjectOverviewCard({
 export function WorkGrid() {
   const cardRefs = useRef<Array<HTMLElement | null>>([]);
   const [activeProjectIndex, setActiveProjectIndex] = useState<number | null>(null);
-  const [focusedProjectIndex, setFocusedProjectIndex] = useState(0);
-  const [carouselTransition, setCarouselTransition] = useState({ direction: 1, key: 0 });
+  const betterboxdProject = overviewProjects.find((project) => project.slug === "betterboxd")!;
+  const omaweProject = overviewProjects.find((project) => project.slug === "omawe")!;
+  const jaredProject = overviewProjects.find((project) => project.slug === "jared")!;
 
   useEffect(() => {
     const mobileQuery = window.matchMedia("(max-width: 700px)");
@@ -153,83 +141,48 @@ export function WorkGrid() {
     };
   }, []);
 
-  const carouselProjects = [
-    focusedProjectIndex > 0
-      ? { index: focusedProjectIndex - 1, position: "adjacent" as const }
-      : null,
-    { index: focusedProjectIndex, position: "focused" as const },
-    focusedProjectIndex < overviewProjects.length - 1
-      ? { index: focusedProjectIndex + 1, position: "adjacent" as const }
-      : null,
-  ];
-
-  const moveCarousel = (direction: -1 | 1) => {
-    setCarouselTransition((transition) => ({ direction, key: transition.key + 1 }));
-    setFocusedProjectIndex(
-      (currentIndex) =>
-        (currentIndex + direction + overviewProjects.length) % overviewProjects.length,
-    );
-  };
-
-  const selectCarouselProject = (nextIndex: number) => {
-    if (nextIndex === focusedProjectIndex) return;
-
-    setCarouselTransition((transition) => ({
-      direction: nextIndex > focusedProjectIndex ? 1 : -1,
-      key: transition.key + 1,
-    }));
-    setFocusedProjectIndex(nextIndex);
-  };
-
   return (
     <>
-      <section className="work-carousel" aria-label="Selected projects carousel">
-        <div className="work-carousel__progress" aria-label="Selected project progress">
-          {overviewProjects.map((project, index) => (
-            <button
-              aria-label={`Show ${project.name}`}
-              aria-pressed={focusedProjectIndex === index}
-              className={focusedProjectIndex === index ? "work-carousel__progress-segment--active" : undefined}
-              key={project.slug}
-              onClick={() => selectCarouselProject(index)}
-              type="button"
-            />
-          ))}
-        </div>
-        <div
-          className={`work-carousel__track${carouselTransition.key ? ` work-carousel__track--${carouselTransition.direction > 0 ? "forward" : "backward"}` : ""}`}
-          key={carouselTransition.key}
-        >
-          {carouselProjects.map((carouselProject, positionIndex) => {
-            if (!carouselProject) {
-              return <div aria-hidden="true" className="work-carousel__spacer" key={`spacer-${positionIndex}`} />;
-            }
-
-            const { index, position } = carouselProject;
-            const project = overviewProjects[index];
-
-            return (
-              <ProjectOverviewCard
-                cardRef={() => undefined}
-                carouselPosition={position}
-                isActive={position === "focused"}
-                key={`${position}-${project.slug}`}
-                onCarouselFocus={() => selectCarouselProject(index)}
-                project={project}
-                projectIndex={index}
-              />
-            );
-          })}
-        </div>
-        <div className="work-carousel__controls" aria-label="Carousel controls">
-          <button aria-label="Show previous project" onClick={() => moveCarousel(-1)} type="button">
-            ←
-          </button>
-          <button aria-label="Show next project" onClick={() => moveCarousel(1)} type="button">
-            →
-          </button>
-        </div>
-      </section>
+      <ProjectCaseStudyPreview
+        description="Rethinking how film lovers remember the movies that move them. While movie apps focus on ratings and reviews, Betterboxd creates a more personal space for film lovers to reflect through guided journaling."
+        href="/work/betterboxd"
+        image={{
+          alt: "Betterboxd journaling screens on two iPhones",
+          height: 1548,
+          src: "/assets/betterboxd-preview-mockup.png",
+          width: 1568,
+        }}
+        priority
+        tags={betterboxdProject.overview.tags?.slice(0, 2) ?? []}
+        title="Betterboxd"
+      />
+      <ProjectCaseStudyPreview
+        ctaLabel={omaweProject.overview.caseStudyStatus}
+        description={omaweProject.overview.description}
+        href="/work/omawe"
+        image={{
+          alt: "Omawe trip tracking screens on two iPhones",
+          height: 1548,
+          src: "/assets/omawe-preview-mockup.png",
+          width: 1568,
+        }}
+        imagePosition="right"
+        tags={omaweProject.overview.tags ?? []}
+        title="Omawe"
+      />
+      <ProjectCaseStudyPreview
+        ctaLabel="Case study coming soon"
+        description={jaredProject.overview.description}
+        href="/work/jared"
+        image={{
+          alt: "Jared reading companion screens on two iPhones",
+          height: 1548,
+          src: "/assets/jared-preview-mockup.png",
+          width: 1568,
+        }}
+        tags={jaredProject.overview.tags ?? []}
+        title="Jared"
+      />
 
       <section className="work-grid" aria-label="Selected projects">
         {overviewProjects.map((project, index) => (
