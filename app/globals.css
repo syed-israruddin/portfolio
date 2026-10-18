@@ -17,6 +17,7 @@ body {
   background-image:
     linear-gradient(rgba(28, 28, 27, .045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(28, 28, 27, .045) 1px, transparent 1px);
+  background-attachment: fixed;
   background-size: 16px 16px;
   font-family: var(--font-dm-sans), Arial, sans-serif;
   font-weight: 300;
