@@ -14,7 +14,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [activeLabel, setActiveLabel] = useState<string | null>(null);
   const isCaseStudy = pathname.startsWith("/work/");
-  const hasSolidBackground = isCaseStudy || pathname === "/resume";
+  const hasSolidBackground = isCaseStudy || pathname === "/resume" || pathname === "/";
 
   return (
     <header className={`site-header${hasSolidBackground ? " site-header--case-study" : ""}`} aria-label="Primary navigation">

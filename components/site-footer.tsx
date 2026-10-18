@@ -3,9 +3,11 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import DotGrid from "@/components/dot-grid";
+import { useScrollReveal } from "@/components/use-scroll-reveal";
 
 export function SiteFooter() {
   const footerRef = useRef<HTMLElement>(null);
+  const { isVisible, ref: revealRef } = useScrollReveal<HTMLDivElement>();
   const [emailCopied, setEmailCopied] = useState(false);
 
   const copyEmail = async () => {
@@ -14,11 +16,11 @@ export function SiteFooter() {
   };
 
   return (
-    <footer ref={footerRef} className="site-footer">
+    <footer ref={footerRef} className={`site-footer scroll-reveal${isVisible ? " scroll-reveal--visible" : ""}`}>
       <DotGrid className="site-footer__dot-grid" interactionTargetRef={footerRef} />
-      <div className="site-footer__content">
-        <h2>Let’s Chat!</h2>
-        <nav aria-label="Contact links">
+      <div ref={revealRef} className="site-footer__content">
+        <h2 className="scroll-reveal__text">Let’s Chat!</h2>
+        <nav className="scroll-reveal__text" aria-label="Contact links">
           <a className="site-footer__button site-footer__button--icon" href="https://www.instagram.com/syed1srar?stkn=OXVuY3hxNjdsZWQy&utm_source=qr" target="_blank" rel="noreferrer" aria-label="Instagram">
             <Image src="/assets/instagram-icon.svg" alt="" width={32} height={32} />
           </a>

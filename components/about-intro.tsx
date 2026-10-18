@@ -1,9 +1,14 @@
+"use client";
+
 import Image from "next/image";
+import { useScrollReveal } from "@/components/use-scroll-reveal";
 
 export function AboutIntro() {
+  const { isVisible, ref } = useScrollReveal();
+
   return (
-    <section className="about-intro" id="about-me" aria-labelledby="about-me-title">
-      <h2 id="about-me-title" className="about-title" aria-label="About me">
+    <section ref={ref} className={`about-intro scroll-reveal${isVisible ? " scroll-reveal--visible" : ""}`} id="about-me" aria-labelledby="about-me-title">
+      <h2 id="about-me-title" className="about-title scroll-reveal__text" aria-label="About me">
         <Image
           src="/assets/about-me-typographic-header.png"
           alt=""
@@ -12,7 +17,7 @@ export function AboutIntro() {
           className="about-title-image"
         />
       </h2>
-      <p>A little about myself</p>
+      <p className="scroll-reveal__text">A little about myself</p>
     </section>
   );
 }
