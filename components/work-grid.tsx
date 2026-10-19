@@ -96,6 +96,7 @@ export function WorkGrid() {
   const betterboxdProject = overviewProjects.find((project) => project.slug === "betterboxd")!;
   const omaweProject = overviewProjects.find((project) => project.slug === "omawe")!;
   const jaredProject = overviewProjects.find((project) => project.slug === "jared")!;
+  const pastcastProject = overviewProjects.find((project) => project.slug === "pastcast")!;
 
   useEffect(() => {
     const mobileQuery = window.matchMedia("(max-width: 700px)");
@@ -182,6 +183,20 @@ export function WorkGrid() {
         }}
         tags={jaredProject.overview.tags ?? []}
         title="Jared"
+      />
+      <ProjectCaseStudyPreview
+        ctaLabel={pastcastProject.overview.caseStudyStatus}
+        description={pastcastProject.overview.description}
+        href="/work/pastcast"
+        image={{
+          alt: "PastCast weather history screens on two iPhones",
+          height: 1548,
+          src: "/assets/pastcast-preview-mockup.png",
+          width: 1568,
+        }}
+        imagePosition="right"
+        tags={pastcastProject.overview.tags ?? []}
+        title="PastCast"
       />
 
       <section className="work-grid" aria-label="Selected projects">
