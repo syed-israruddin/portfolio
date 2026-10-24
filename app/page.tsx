@@ -14,8 +14,10 @@ export default function HomePage() {
         <Hero />
         <AutoScrollBar />
         <Introduction />
-        <WorkIntro />
-        <WorkGrid />
+        <section id="work" aria-labelledby="work-title">
+          <WorkIntro />
+          <WorkGrid />
+        </section>
         <AboutIntro />
         <AboutInfo />
       </div>
