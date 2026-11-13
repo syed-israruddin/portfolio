@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ImageCarousel } from "@/components/case-study/image-carousel";
 import { BetterboxdCaseStudyContent } from "@/components/case-study/betterboxd-case-study-content";
-import { OmaweCaseStudyContent } from "@/components/case-study/omawe-case-study-content";
 import type { Project } from "@/content/projects";
 
 type CaseStudyLayoutProps = {
@@ -46,7 +45,6 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
             slides={project.caseStudy.heroCarousel.slides}
           />
         )}
-        {project.slug === "omawe" && <OmaweCaseStudyContent />}
         {project.slug === "betterboxd" && <BetterboxdCaseStudyContent />}
       </main>
     );

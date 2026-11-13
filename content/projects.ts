@@ -45,32 +45,6 @@ export const projects: Project[] = [
     caseStudy: {
       metaTitle: "Omawe Case Study — Syed Israruddin",
       metaDescription: "A product design case study for Omawe, a group trip awareness app.",
-      headerMetadata: {
-        summary:
-          "Omawe is a group travel app that helps people stay aware of a shared journey through Live Activities. Everyone in a trip can see their distance and ETA to a shared destination, right from the Lock Screen and Dynamic Island.",
-        role: "Product Designer",
-        timeline: "3 Weeks",
-      },
-      heroCarousel: {
-        initialIndex: 1,
-        slides: [
-          {
-            label: "Omawe team",
-            src: "/assets/omawe-team-image.jpg",
-            alt: "The Omawe team with their app prototypes and design work",
-          },
-          {
-            label: "Omawe group travel experience",
-            src: "/assets/omawe-case-study-hero-image.png",
-            alt: "Omawe group travel app interface",
-          },
-          {
-            label: "Omawe on the App Store",
-            src: "/assets/omawe-app-store-image.jpg",
-            alt: "Omawe available on the Apple App Store",
-          },
-        ],
-      },
     },
     overview: {
       heading: "Transforming passive location sharing into active trip awareness.",

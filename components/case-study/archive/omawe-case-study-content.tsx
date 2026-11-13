@@ -1,4 +1,4 @@
-import { CaseStudyImageViewer } from "./case-study-image-viewer";
+import { CaseStudyImageViewer } from "../case-study-image-viewer";
 
 type PlaceholderImageProps = {
   label: string;
