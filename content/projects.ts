@@ -17,6 +17,12 @@ export type Project = {
   caseStudy: {
     metaTitle: string;
     metaDescription: string;
+    inProgressDetails?: {
+      label: string;
+      summary: string;
+      cta?: { href: string; label: string };
+      metadata: Array<{ label: string; value: string }>;
+    };
     headerMetadata?: {
       summary: string;
       role: string;
@@ -45,6 +51,44 @@ export const projects: Project[] = [
     caseStudy: {
       metaTitle: "Omawe Case Study — Syed Israruddin",
       metaDescription: "A product design case study for Omawe, a group trip awareness app.",
+      inProgressDetails: {
+        label: "Full case study coming soon",
+        summary:
+          "Omawe is a group travel app that helps people stay aware of a shared journey through Live Activities. Everyone in a trip can see their distance and ETA to a shared destination, right from the Lock Screen and Dynamic Island.",
+        cta: {
+          label: "Download on the App Store",
+          href: "https://apps.apple.com/id/app/omawe-group-trip-tracker/id6788641544?itscg=30200&itsct=apps_box_link&mttnsubad=6788641544",
+        },
+        metadata: [
+          { label: "Role", value: "Product Designer" },
+          { label: "Team", value: "5 Members" },
+          { label: "Timeline", value: "3 Weeks" },
+          {
+            label: "Technologies",
+            value: "SwiftUI, MapKit, Core Location, ActivityKit, CloudKit, UserNotifications",
+          },
+        ],
+      },
+      heroCarousel: {
+        initialIndex: 1,
+        slides: [
+          {
+            label: "Omawe team",
+            src: "/assets/omawe-team-image.jpg",
+            alt: "The Omawe team with their app prototypes and design work",
+          },
+          {
+            label: "Omawe on the App Store",
+            src: "/assets/omawe-app-store-image.jpg",
+            alt: "Omawe available on the Apple App Store",
+          },
+          {
+            label: "Omawe group travel experience",
+            src: "/assets/omawe-case-study-hero-image.png",
+            alt: "Omawe group travel app interface",
+          },
+        ],
+      },
     },
     overview: {
       heading: "Transforming passive location sharing into active trip awareness.",

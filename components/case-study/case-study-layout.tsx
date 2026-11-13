@@ -9,6 +9,7 @@ type CaseStudyLayoutProps = {
 
 export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
   const metadata = project.caseStudy.headerMetadata;
+  const inProgressDetails = project.caseStudy.inProgressDetails;
 
   if (metadata) {
     const metadataItems = [
@@ -55,14 +56,47 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
       <div className="case-study__content">
         <Link className="case-study__back" href="/#work">← Back to selected works</Link>
         <header className="case-study__header">
-          <p>Case study</p>
+          <p>{inProgressDetails?.label ?? "Case study"}</p>
           <h1>{project.name}</h1>
-          <p>{project.caseStudy.metaDescription}</p>
+          <p className="case-study__summary">{inProgressDetails?.summary ?? project.caseStudy.metaDescription}</p>
+          {inProgressDetails?.cta && (
+            <a
+              className="case-study__app-store-link"
+              href={inProgressDetails.cta.href}
+              rel="noreferrer"
+              target="_blank"
+            >
+              {inProgressDetails.cta.label}
+            </a>
+          )}
+          {inProgressDetails && (
+            <dl className="case-study__details">
+              {inProgressDetails.metadata.map(({ label, value }) => (
+                <div key={label}>
+                  <dt>{label}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
         </header>
-        <section className="case-study__placeholder" aria-label={`${project.name} case study content`}>
-          <p>Case study coming soon.</p>
-        </section>
       </div>
+      {project.caseStudy.heroCarousel && (
+        <div className="case-study__carousel">
+          <ImageCarousel
+            initialIndex={project.caseStudy.heroCarousel.initialIndex}
+            projectName={project.name}
+            slides={project.caseStudy.heroCarousel.slides}
+          />
+        </div>
+      )}
+      {!inProgressDetails && (
+        <div className="case-study__content">
+          <section className="case-study__placeholder" aria-label={`${project.name} case study content`}>
+            <p>Case study coming soon.</p>
+          </section>
+        </div>
+      )}
     </main>
   );
 }
